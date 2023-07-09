@@ -27,7 +27,6 @@ set encoding=UTF-8
 
 lua require('plugins')
 
-
 nnoremap <C-t> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 

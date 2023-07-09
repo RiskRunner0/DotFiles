@@ -31,4 +31,13 @@ return require('packer').startup(function()
 
     -- docs: https://github.com/neoclide/coc.nvim
     use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile'}
+
+    -- Treesitter
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = [[require('config.treesitter')]],
+    }
+
 end)
+
