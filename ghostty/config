@@ -43,7 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 theme = rose-pine
 
-background-opacity = 0.6
+background-opacity = 0.8
 
 # Exact blur intensity is ignored on KDE Plasma, it's the same as setting
 # "true" for any value, per the docs.
