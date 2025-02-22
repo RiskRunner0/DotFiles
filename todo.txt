@@ -1,0 +1,4 @@
+TODO
+- Make a script that sets up environment
+  - links .config files to these files
+  - Adds ~/tmux.conf link
