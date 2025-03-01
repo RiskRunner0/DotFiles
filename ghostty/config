@@ -51,3 +51,6 @@ background-blur = true
 
 # Set default shell to fish
 command = $(which fish) --login --interactive
+
+# Keybind Quick Terminal to Ctrl + `
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
