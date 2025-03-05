@@ -1,3 +1,3 @@
-require("core")
-require("plugins")
-
+require("config.settings")
+require("config.keymaps")
+require("config.lazy")
