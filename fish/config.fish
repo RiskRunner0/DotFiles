@@ -5,3 +5,10 @@ if status is-interactive
   set -x PATH ~/go/bin $PATH
   set -g fish_key_bindings fish_vi_key_bindings
 end
+
+set AMZN_FISH_CONFIG ~/.config/fish/amzn_config.fish
+
+if test -f $AMZN_FISH_CONFIG
+    echo "Found $AMZN_FISH_CONFIG; sourcing..."
+    source $AMZN_FISH_CONFIG
+end
