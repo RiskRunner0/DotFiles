@@ -15,7 +15,7 @@ return {
         local builtin = require("telescope.builtin")
 
         keymap("<leader>sf", builtin.find_files)
-        keymap("<leader>sn", function()
+        keymap("<leader>sc", function()
             builtin.find_files {
                 cwd = vim.fn.stdpath "config"
             }
