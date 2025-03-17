@@ -92,21 +92,23 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("lsp-attach-keybinds", { clear = true }),
       callback = function(e)
-        local keymap = function(keys, func)
+        local wk = require("which-key")
+        local keymap = function(keys, desc, func)
           vim.keymap.set("n", keys, func, { buffer = e.buf })
+          wk.add({ keys, desc = desc })
         end
         local builtin = require("telescope.builtin")
 
-        keymap("gd", builtin.lsp_definitions)
-        keymap("gD", vim.lsp.buf.declaration)
-        keymap("gr", builtin.lsp_references)
-        keymap("gI", builtin.lsp_implementations)
-        keymap("<leader>D", builtin.lsp_type_definitions)
-        keymap("<leader>ds", builtin.lsp_document_symbols)
-        keymap("<leader>ws", builtin.lsp_dynamic_workspace_symbols)
-        keymap("<leader>rn", vim.lsp.buf.rename)
-        keymap("<leader>ca", vim.lsp.buf.code_action)
-        keymap("K", vim.lsp.buf.hover)
+        keymap("gd", "Go to definitions", builtin.lsp_definitions)
+        keymap("gD", "Declarations", vim.lsp.buf.declaration)
+        keymap("gr", "References", builtin.lsp_references)
+        keymap("gI", "Implementations", builtin.lsp_implementations)
+        keymap("<leader>D", "Type definitions", builtin.lsp_type_definitions)
+        keymap("<leader>ds", "Document symbols", builtin.lsp_document_symbols)
+        keymap("<leader>ws", "Workspace symbols", builtin.lsp_dynamic_workspace_symbols)
+        keymap("<leader>rn", "Rename", vim.lsp.buf.rename)
+        keymap("<leader>ca", "Code actions", vim.lsp.buf.code_action)
+        keymap("K", "Hover", vim.lsp.buf.hover)
       end
     })
   end
