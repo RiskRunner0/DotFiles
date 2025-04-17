@@ -56,6 +56,7 @@ return {
         },
       },
       gopls = {},
+      pylsp = {},
     }
 
     mason.setup()
@@ -68,6 +69,7 @@ return {
         -- e.g. language servers not configured with nvim-lspconfig, linters, formatters, etc.
         "stylua",
         "jdtls",
+        "kotlin-language-server",
       }
     )
     mason_tool_installer.setup({
