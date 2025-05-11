@@ -19,6 +19,7 @@ return {
     "mfussenegger/nvim-jdtls",
     "hrsh7th/cmp-nvim-lsp",
     { 'j-hui/fidget.nvim', opts = {} },
+    "oxalica/nil",
   },
 
   config = function()
@@ -31,7 +32,7 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     require('lspconfig').solargraph.setup {}
     require('lspconfig').ts_ls.setup {}
-    require('lspconfig').gopls.setup {}
+    require('lspconfig').nil_ls.setup {}
 
     local default_capabilities = vim.lsp.protocol.make_client_capabilities()
     default_capabilities = vim.tbl_deep_extend(
@@ -55,7 +56,6 @@ return {
           },
         },
       },
-      gopls = {},
       pylsp = {},
     }
 
