@@ -1,4 +1,4 @@
-c config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -24,6 +24,7 @@ c config, pkgs, ... }:
     tmux
     gcc
     nil
+    fish
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
