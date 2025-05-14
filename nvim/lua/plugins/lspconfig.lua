@@ -1,15 +1,14 @@
 return {
   "neovim/nvim-lspconfig",
+  event = "VeryLazy",
   dependencies = {
     -- optional `vim.uv` typings for lazydev
     { "Bilal2453/luvit-meta", lazy = true },
     "hrsh7th/cmp-nvim-lsp",
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',    opts = {} },
     "oxalica/nil",
   },
-
   config = function()
-
     local lspconfig = require("lspconfig")
     local configs = require("lspconfig.configs")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
