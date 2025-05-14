@@ -1,0 +1,8 @@
+gui:
+  sidePanelWidtth: 0.2
+  showNumstatInFilesView: true
+  expandFocusedSidePanel: true
+git:
+  paging:
+    colorArg: always
+    pager: delta --light --paging=never --true-color always --line-numbers
