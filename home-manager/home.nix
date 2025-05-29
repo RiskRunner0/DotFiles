@@ -6,7 +6,12 @@
   home.username = "matt";
   home.homeDirectory = "/home/matt";
 
+  xdg.enable = true;
+  targets.genericLinux.enable = true;
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
+    ./base
     ./packages.nix
   ];
 
@@ -65,13 +70,5 @@
     enable = true;
     userName = "Matt Smith";
     userEmail = "matthew.j.smith2@outlook.com";
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    # extraConfig = builtins.readFile /home/matt/workplace/DotFiles/nvim/init.lua;
   };
 }
