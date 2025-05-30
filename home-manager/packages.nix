@@ -7,6 +7,7 @@
     gcc
     nil
     fish
+    obsidian
     ruby
     rubyPackages_3_4.solargraph
     spotify

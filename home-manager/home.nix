@@ -16,6 +16,7 @@ in
 
   imports = [
     ./base
+    ./packages.nix
   ] ++ lib.optionals personalExists [ ./personal ]
     ++ lib.optionals workExists [ ./work ];
 
@@ -42,8 +43,13 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/nvim" = {
-    	source = /home/matt/workplace/DotFiles/nvim;
-	recursive = true;
+      source = /home/matt/workplace/DotFiles/nvim;
+      recursive = true;
+    };
+
+    ".config/tmux" = {
+      source = /home/matt/workplace/DotFiles/tmux;
+      recursive = true;
     };
   };
 
