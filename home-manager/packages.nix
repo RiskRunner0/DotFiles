@@ -9,7 +9,8 @@
     fish
     obsidian
     ruby
-    rubyPackages_3_4.solargraph
+    ripgrep
+    rubyPackages_3_4.sorbet-runtime
     spotify
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

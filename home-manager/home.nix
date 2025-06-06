@@ -51,6 +51,16 @@ in
       source = /home/matt/workplace/DotFiles/tmux;
       recursive = true;
     };
+
+    ".config/fish" = {
+      source = /home/matt/workplace/DotFiles/fish;
+      recursive = true;
+    };
+
+    ".config/ghostty" = {
+      source = /home/matt/workplace/DotFiles/ghostty;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through

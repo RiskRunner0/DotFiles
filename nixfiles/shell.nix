@@ -8,9 +8,12 @@ pkgs.mkShellNoCC {
     delta
     fish
     fzf
+    gcc
     lua-language-server
     neovim
     ripgrep
+    ruby
+    rubyPackages_3_4.sorbet-runtime
   ];
 
   GREETING = "Hello, Nix!";
