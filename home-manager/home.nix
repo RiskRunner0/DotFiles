@@ -27,23 +27,9 @@ in
       recursive = true;
     };
 
-    ".config/fish" = {
-      source = /home/matt/workplace/DotFiles/fish;
-      recursive = true;
-    };
-
     ".config/ghostty" = {
       source = /home/matt/workplace/DotFiles/ghostty;
       recursive = true;
-    };
-  };
-
-  programs.fish = {
-    enable = true;
-    shellInit = builtins.readFile ~/.config/fish/config.fish;
-    shellAliases = {
-      clip = "xclip -selection clipboard";
-      ll = "ls -la";
     };
   };
 
@@ -68,6 +54,33 @@ in
 
     fzf.enable = true;
     zoxide.enable = true;
+
+    fish = {
+      enable = true;
+
+      # Basic aliases managed by Nix
+      shellAliases = {
+        # Clipboard
+        clip = "xclip -selection clipboard";
+        cat = "bat";
+
+        # Common shortcuts
+        ll = "ls -la";
+        la = "ls -A";
+        l = "ls -CF";
+      };
+
+      plugins = [
+        {
+          name = "z";
+          src = pkgs.fishPlugins.z.src;
+        }
+        {
+          name = "fzf-fish";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
+      ];
+    };
 
     neovim = {
       enable = true;
