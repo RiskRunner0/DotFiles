@@ -1,4 +1,4 @@
 TODO
-- Make a script that sets up environment
-  - links .config files to these files
-  - Adds ~/tmux.conf link
+- Make a script that sets up environment (working on this with Nix and home-manager)
+- Fix tmux package manager
+- Auto-update KDE application finder in post-script

@@ -3,15 +3,18 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    bat
+    delta
     tmux
     gcc
     nil
-    fish
+    nixpkgs-fmt
     obsidian
     ruby
     ripgrep
     rubyPackages_3_4.sorbet-runtime
     spotify
+    xclip
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
