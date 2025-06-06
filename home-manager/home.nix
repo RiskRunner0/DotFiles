@@ -69,6 +69,40 @@ in
     fzf.enable = true;
     zoxide.enable = true;
 
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+
+      # Only manage external dependencies through nix
+      extraPackages = with pkgs; [
+        # LSPs
+        nil # Nix LSP
+        lua-language-server
+        typescript-language-server
+        pyright
+
+        # Formatters
+        nixpkgs-fmt
+        stylua
+        black
+
+        # DAP
+        delve
+
+        # Tools
+        ripgrep
+        fd
+        git
+        nodejs
+        python3
+
+        # Clipboard support
+        xclip
+      ];
+    };
+
     tmux = {
       enable = true;
       shell = "${pkgs.fish}/bin/fish";
