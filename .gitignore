@@ -1,2 +1,10 @@
 # Ignore AMZN files
 **/amzn*
+
+# Home-manager generated symlinks (change on every home-manager switch)
+ghostty/config
+nvim/init.lua
+nvim/lazy-lock.json
+nvim/ftplugin/*.lua
+nvim/lua/**/*.lua
+tmux/tmux.conf
