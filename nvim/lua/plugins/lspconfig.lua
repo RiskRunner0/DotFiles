@@ -106,10 +106,8 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("lsp-attach-keybinds", { clear = true }),
       callback = function(e)
-        local wk = require("which-key")
         local keymap = function(keys, desc, func)
-          vim.keymap.set("n", keys, func, { buffer = e.buf })
-          wk.add({ keys, desc = desc })
+          vim.keymap.set("n", keys, func, { buffer = e.buf, desc = desc })
         end
         local builtin = require("telescope.builtin")
 
