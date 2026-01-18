@@ -6,7 +6,7 @@ let
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+   # manage.
   home.username = "matt";
   home.homeDirectory = "/home/matt";
   home.stateVersion = "24.11";
@@ -23,12 +23,7 @@ in
 
   home.file = {
     ".config/nvim" = {
-      source = /home/matt/workplace/DotFiles/nvim;
-      recursive = true;
-    };
-
-    ".config/ghostty" = {
-      source = /home/matt/workplace/DotFiles/ghostty;
+      source = /home/matt/workspace/DotFiles/nvim;
       recursive = true;
     };
   };
@@ -43,12 +38,9 @@ in
 
     git = {
       enable = true;
-      userName = "Matt Smith";
-      userEmail = "matthew.j.smith2@outlook.com";
-      extraConfig = {
-        init.defaultBranch = "main";
-        pull.rebase = true;
-        push.autoSetupRemote = true;
+      settings = {
+        user.name = "Matt Smith";
+        user.email = "matthew.j.smith2@outlook.com";
       };
     };
 
@@ -57,6 +49,10 @@ in
 
     fish = {
       enable = true;
+
+      shellInit = ''
+        set -gx PATH "$HOME/.local/bin" $PATH
+      '';
 
       # Basic aliases managed by Nix
       shellAliases = {

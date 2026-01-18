@@ -1,13 +1,1 @@
-return {
-	"rose-pine/neovim",
-	name = "rose-pine",
-  priority = 1000,
-	config = function()
-    require('rose-pine').setup({
-      highlight_groups = {
-        ColorColumn = { bg = 'love' },
-      }
-    })
-		vim.cmd("colorscheme rose-pine-dawn")
-	end
-}
+/nix/store/ww145dvq5zbccvxgf454pgglg9fk8cr8-home-manager-files/.config/nvim/lua/plugins/colorschemes.lua

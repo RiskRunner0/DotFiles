@@ -7,12 +7,12 @@
     delta
     tmux
     gcc
+    # ghostty  # Installed via system package manager for OpenGL support
     nil
     nixpkgs-fmt
     obsidian
     ruby
     ripgrep
-    rubyPackages_3_4.sorbet-runtime
     spotify
     xclip
 
