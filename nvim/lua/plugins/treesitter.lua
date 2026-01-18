@@ -30,19 +30,25 @@ return {
       "yaml",
     })
 
-    -- Enable syntax highlighting for all filetypes
+    -- Enable syntax highlighting for filetypes with parsers
     vim.api.nvim_create_autocmd('FileType', {
       pattern = '*',
       callback = function()
-        vim.treesitter.start()
+        -- Try to start treesitter, silently fail if no parser exists
+        pcall(vim.treesitter.start)
       end,
     })
 
-    -- Enable treesitter-based indentation
+    -- Enable treesitter-based indentation for filetypes with parsers
     vim.api.nvim_create_autocmd('FileType', {
       pattern = '*',
       callback = function()
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        local buf = vim.api.nvim_get_current_buf()
+        local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+        -- Only enable treesitter indentation if a parser exists
+        if lang and pcall(vim.treesitter.language.add, lang) then
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
       end,
     })
   end
