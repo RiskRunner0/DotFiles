@@ -2,7 +2,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "Matt Smith";
-    userEmail = "matthew.j.smith2@outlook.com";
+    settings = {
+      user = {
+        name = "Matt Smith";
+        email = "matthew.j.smith2@outlook.com";
+      };
+    };
   };
 }
