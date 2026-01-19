@@ -28,20 +28,6 @@ return {
     local mason_tool_installer = require("mason-tool-installer")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-    -- Configure LSP servers using new vim.lsp.config API
-    vim.lsp.config('ts_ls', {})
-    vim.lsp.config('nil_ls', {
-      settings = {
-        ['nil'] = {
-          formatting = {
-            command = { "nixpkgs-fmt" },
-          },
-        },
-      },
-    })
-    vim.lsp.config('rust_analyzer', {})
-    vim.lsp.config('sorbet', {})
-
     local default_capabilities = vim.lsp.protocol.make_client_capabilities()
     default_capabilities = vim.tbl_deep_extend(
       "force",
@@ -49,6 +35,7 @@ return {
       cmp_nvim_lsp.default_capabilities()
     )
 
+    -- Consolidated LSP server configurations
     local server_configs = {
       lua_ls = {
         settings = {
@@ -65,6 +52,18 @@ return {
         },
       },
       pylsp = {},
+      ts_ls = {},
+      nil_ls = {
+        settings = {
+          ['nil'] = {
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
+          },
+        },
+      },
+      rust_analyzer = {},
+      sorbet = {},
     }
 
     mason.setup()
@@ -99,9 +98,6 @@ return {
         ['jdtls'] = function() end,
       },
     })
-
-    -- Enable the manually configured servers
-    vim.lsp.enable({'ts_ls', 'nil_ls', 'rust_analyzer', 'sorbet'})
 
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("lsp-attach-keybinds", { clear = true }),
