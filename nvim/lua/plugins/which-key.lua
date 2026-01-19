@@ -2,38 +2,15 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  },
-  plugins = {
-    marks = true,
-    registers = true,
-    spelling = {
-      enabled = true,
-      suggestions = 20
+    preset = "modern",
+    icons = {
+      breadcrumb = ">>",
+      separator = "->",
+      group = "+",
     },
-    presets = {
-      operators = true,
-      motions = true,
-      text_objects = true,
-      windows = true,
-      nav = true,
-      z = true,
-      g = true,
+    win = {
+      border = "single",
     },
-  },
-  operators = {
-    gc = "Comments",
-  },
-  icons = {
-    breadcrumb = ">>",
-    separator = "->",
-    group = "+",
-  },
-  popup_mappings = {
-    scroll_down = "<c-d>",
-    scroll_up = "<c-u>",
   },
   keys = {
     {
