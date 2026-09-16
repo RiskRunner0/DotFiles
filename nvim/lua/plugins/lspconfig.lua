@@ -3,7 +3,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     {
       "folke/lazydev.nvim",
       ft = "lua", -- only load on lua files
@@ -17,7 +17,7 @@ return {
     -- optional `vim.uv` typings for lazydev
     { "Bilal2453/luvit-meta", lazy = true },
     "hrsh7th/cmp-nvim-lsp",
-    { 'j-hui/fidget.nvim',    opts = {} },
+    { "j-hui/fidget.nvim", opts = {} },
   },
 
   config = function()
@@ -28,11 +28,7 @@ return {
     local dd_gopls = vim.fn.exepath("dd-gopls")
 
     local default_capabilities = vim.lsp.protocol.make_client_capabilities()
-    default_capabilities = vim.tbl_deep_extend(
-      "force",
-      default_capabilities,
-      cmp_nvim_lsp.default_capabilities()
-    )
+    default_capabilities = vim.tbl_deep_extend("force", default_capabilities, cmp_nvim_lsp.default_capabilities())
 
     -- Consolidated LSP server configurations
     local server_configs = {
@@ -44,8 +40,8 @@ return {
             },
             diagnostics = {
               disable = {
-                "missing-fields"
-              }
+                "missing-fields",
+              },
             },
           },
         },
@@ -71,11 +67,7 @@ return {
     })
 
     for server_name, server_config in pairs(server_configs) do
-      server_config.capabilities = vim.tbl_deep_extend(
-        "force",
-        default_capabilities,
-        server_config.capabilities or {}
-      )
+      server_config.capabilities = vim.tbl_deep_extend("force", default_capabilities, server_config.capabilities or {})
       vim.lsp.config(server_name, server_config)
       vim.lsp.enable(server_name)
     end
@@ -103,7 +95,7 @@ return {
         keymap("<leader>rn", "Rename", vim.lsp.buf.rename)
         keymap("<leader>ca", "Code actions", vim.lsp.buf.code_action)
         keymap("K", "Hover", vim.lsp.buf.hover)
-      end
+      end,
     })
-  end
+  end,
 }

@@ -28,8 +28,8 @@ return {
     })
 
     -- Enable syntax highlighting for filetypes with parsers
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = '*',
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "*",
       callback = function()
         -- Try to start treesitter, silently fail if no parser exists
         pcall(vim.treesitter.start)
@@ -37,8 +37,8 @@ return {
     })
 
     -- Enable treesitter-based indentation for filetypes with parsers
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = '*',
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "*",
       callback = function()
         local buf = vim.api.nvim_get_current_buf()
         local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
@@ -48,5 +48,5 @@ return {
         end
       end,
     })
-  end
+  end,
 }
