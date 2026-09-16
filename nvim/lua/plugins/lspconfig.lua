@@ -54,12 +54,13 @@ return {
 
     mason.setup()
 
-    local mason_servers = vim.tbl_keys(server_configs)
-    if dd_gopls ~= "" then
-      mason_servers = vim.tbl_filter(function(server_name)
-        return server_name ~= "gopls"
-      end, mason_servers)
-    end
+    local mason_servers = vim.tbl_filter(function(server_name)
+      if server_name == "sorbet" then
+        return false
+      end
+
+      return server_name ~= "gopls" or dd_gopls == ""
+    end, vim.tbl_keys(server_configs))
     table.sort(mason_servers)
 
     mason_tool_installer.setup({
