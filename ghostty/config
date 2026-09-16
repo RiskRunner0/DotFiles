@@ -1,0 +1,9 @@
+theme = Rose Pine Dawn
+background-blur = true
+
+# Resolve Fish through PATH so this works with Homebrew on macOS and the
+# system package manager on Linux.
+command = direct:fish --login --interactive
+
+# Toggle Ghostty's Quick Terminal with Ctrl+`.
+keybind = ctrl+grave_accent=toggle_quick_terminal

@@ -1,4 +1,104 @@
-TODO
-- Make a script that sets up environment (working on this with Nix and home-manager)
-- Fix tmux package manager
-- Auto-update KDE application finder in post-script
+# Dotfiles migration TODO
+
+Goal: support both the original Linux home machine and the Apple silicon work
+Mac from one shared configuration. Keep common behavior in a base profile and
+make machine-specific differences explicit and easy to replace.
+
+## 1. Decide and document the configuration model
+
+- [ ] Define a shared base for Fish, Git, Neovim, tmux, Ghostty, and CLI tools.
+- [ ] Define a `personal` profile for the Linux home machine.
+- [ ] Define a `work` profile for the Apple silicon Mac.
+- [ ] Keep host-specific values out of shared modules:
+  - username and home directory
+  - Git name/email and optional signing configuration
+  - work-only or personal-only packages
+  - company-specific shell configuration, certificates, and environment values
+- [ ] Select the profile explicitly by hostname or a small host entry point,
+      rather than by checking whether `./personal` or `./work` happens to exist.
+- [ ] Add a README describing the layout, supported hosts, installation, update,
+      rollback, and profile-switching workflows.
+
+## 2. Establish a portable layout
+
+- [ ] Make the repository useful without requiring Nix or Home Manager.
+- [ ] Later, decide whether a replacement bootstrap command is useful. If so,
+      make it safe, idempotent, and explicit about the selected profile.
+- [ ] Detect the operating system and architecture, but keep the profile choice
+      explicit so a work machine cannot accidentally receive personal settings.
+- [ ] Store linkable application configs in stable repository paths instead of
+      generating them through Home Manager.
+- [ ] Add a macOS package list/Brewfile for command-line tools and GUI casks.
+- [ ] Add a documented Linux package list or installation path for the personal
+      machine without forcing both systems to use the same package manager.
+- [ ] Keep package installation separable from config linking so the dotfiles
+      can still be applied on a company-managed machine.
+- [ ] Decide whether to retain the existing Nix files as an optional Linux
+      installation path or remove them after their useful settings are migrated.
+
+## 3. Make shared modules platform-aware
+
+- [ ] Move the reusable settings currently embedded in Home Manager modules into
+      normal config files that can be linked on Linux and macOS.
+- [ ] Remove hard-coded usernames, home directories, and repository paths.
+- [ ] Use `xclip` and `xclip -selection clipboard` only on Linux.
+- [ ] Use `pbcopy`/`pbpaste` or Neovim's native clipboard support on macOS.
+- [ ] Review every package for both `x86_64-linux` and `aarch64-darwin` support.
+- [ ] Move unsupported GUI applications such as Spotify or Obsidian into the
+      appropriate platform/profile package list or Homebrew cask list.
+- [ ] Review Fish PATH initialization for Homebrew (`/opt/homebrew/bin`), local
+      user binaries, and any work-only toolchains.
+- [ ] Verify Ghostty's shell command, blur setting, and keybindings on macOS.
+- [ ] Verify tmux plugins, Nerd Font glyphs, and terminal capabilities in
+      Ghostty on macOS.
+- [ ] Remove or isolate KDE-specific behavior from the shared configuration.
+
+## 4. Separate personal and work concerns cleanly
+
+- [ ] Put public, non-sensitive work defaults in a work profile/module.
+- [ ] Put personal-only applications and preferences in a personal
+      profile/module.
+- [ ] Add per-profile Git identity and, if needed, conditional Git includes for
+      work versus personal repositories.
+- [ ] Keep secrets, access tokens, private certificates, internal repository
+      URLs, and proprietary configuration out of this repository.
+- [ ] Document how externally supplied work configuration is loaded without
+      making the shared setup depend on it.
+- [ ] Make optional work tooling degrade cleanly when it is unavailable on the
+      personal machine.
+- [ ] Provide one obvious activation command per host/profile so changing a
+      machine-specific choice means editing only its host module.
+
+## 5. Retire legacy setup paths
+
+- [x] Remove the unsafe legacy `setup.sh`.
+- [ ] If a bootstrap is added later, avoid destructive replacement of existing
+      files and symlinks; report conflicts or back them up explicitly.
+- [x] Link `lazygit/config.yml` on the work Mac.
+- [ ] Decide whether `home-manager/` and `nixfiles/shell.nix` still provide value
+      after the portable setup works.
+- [ ] If retained, make the Nix path optional, remove Linux-only assumptions,
+      update its nixpkgs pin, and avoid unconditionally `exec`-ing Fish from
+      `shellHook`.
+
+## 6. Validate before activating
+
+- [ ] Add a dry-run mode that reports links, backups, package actions, and
+      selected profile before changing anything.
+- [ ] Test both personal and work profile resolution without modifying the host.
+- [x] Verify Fish starts without errors and expected aliases/tools are present.
+- [ ] Run Neovim headlessly and verify plugin bootstrap, LSPs, formatters,
+      Treesitter parsers, DAP adapters, and clipboard integration.
+- [ ] Verify Java/JDTLS paths and binaries on Apple silicon.
+- [ ] Verify Git/delta and lazygit integrations.
+- [x] Verify tmux, Ghostty, fzf, and zoxide integrations.
+- [ ] Activate the work Mac profile and record any manual/company-managed steps.
+- [ ] Test a clean install or dry run so setup is reproducible on another host.
+
+## Later improvements
+
+- [ ] Add a controlled update workflow for Neovim plugins and other pinned
+      dependencies; include Nix inputs only if the optional Nix setup remains.
+- [ ] Choose and document how tmux plugins are installed when Home Manager is
+      not present.
+- [ ] Add platform-specific desktop integration only where it is still needed.

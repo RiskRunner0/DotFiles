@@ -3,6 +3,6 @@ gui:
   showNumstatInFilesView: true
   expandFocusedSidePanel: true
 git:
-  paging:
-    colorArg: always
-    pager: delta --light --paging=never --true-color always --line-numbers
+  diffRenderers:
+    - colorArg: always
+      command: delta --light --paging=never --true-color always --line-numbers
