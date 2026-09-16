@@ -1,5 +1,5 @@
 gui:
-  sidePanelWidtth: 0.2
+  sidePanelWidth: 0.2
   showNumstatInFilesView: true
   expandFocusedSidePanel: true
 git:
