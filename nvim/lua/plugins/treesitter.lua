@@ -11,6 +11,7 @@ return {
     treesitter.install({
       "bash",
       "embedded_template",
+      "gotmpl",
       "html",
       "javascript",
       "json",
