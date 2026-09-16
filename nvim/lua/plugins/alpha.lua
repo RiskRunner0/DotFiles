@@ -110,7 +110,7 @@ return {
         once = true,
         pattern = "VeryLazy",
         callback = function()
-          local harpoon = require("harpoon")
+          local harpoon_list = require("harpoon"):list()
           local icons = require("mini.icons")
           local dashboard = require("alpha.themes.dashboard")
 
@@ -129,9 +129,10 @@ return {
             "t",
             "d",
           }
-          for i = 1, harpoon:list():length(), 1 do
+          local pinned_count = math.min(harpoon_list:length(), #idx_to_shortcut)
+          for i = 1, pinned_count do
             local highlight = {}
-            local item = harpoon:list():get(i)
+            local item = harpoon_list:get(i)
             local ico, hl = icons.get("file", item.value)
             table.insert(highlight, { hl, 0, #ico })
             local button = dashboard.button(
@@ -148,7 +149,7 @@ return {
 
             section_harpoon.val[#section_harpoon.val + 1] = button
           end
-          if harpoon:list():length() ~= 0 then
+          if pinned_count > 0 then
             table.insert(theta.layout, 3, { type = "padding", val = 2 })
             table.insert(theta.layout, 4, section_harpoon)
           end
