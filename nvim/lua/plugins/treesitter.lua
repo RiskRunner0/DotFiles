@@ -13,7 +13,6 @@ return {
       "bash",
       "embedded_template",
       "html",
-      "java",
       "javascript",
       "json",
       "lua",

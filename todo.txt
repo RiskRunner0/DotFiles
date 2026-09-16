@@ -89,7 +89,6 @@ make machine-specific differences explicit and easy to replace.
 - [x] Verify Fish starts without errors and expected aliases/tools are present.
 - [ ] Run Neovim headlessly and verify plugin bootstrap, LSPs, formatters,
       Treesitter parsers, DAP adapters, and clipboard integration.
-- [ ] Verify Java/JDTLS paths and binaries on Apple silicon.
 - [ ] Verify Git/delta and lazygit integrations.
 - [x] Verify tmux, Ghostty, fzf, and zoxide integrations.
 - [ ] Activate the work Mac profile and record any manual/company-managed steps.

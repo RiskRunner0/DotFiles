@@ -16,7 +16,6 @@ return {
     },
     -- optional `vim.uv` typings for lazydev
     { "Bilal2453/luvit-meta", lazy = true },
-    "mfussenegger/nvim-jdtls",
     "hrsh7th/cmp-nvim-lsp",
     { 'j-hui/fidget.nvim',    opts = {} },
     "oxalica/nil",
@@ -75,8 +74,6 @@ return {
         -- place other packages you want to install but not configure with mason here
         -- e.g. language servers not configured with nvim-lspconfig, linters, formatters, etc.
         "stylua",
-        "jdtls",
-        "kotlin-language-server",
       }
     )
     mason_tool_installer.setup({
@@ -95,7 +92,6 @@ return {
           vim.lsp.config(server_name, server_config)
           vim.lsp.enable(server_name)
         end,
-        ['jdtls'] = function() end,
       },
     })
 
