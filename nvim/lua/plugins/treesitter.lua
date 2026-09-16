@@ -22,8 +22,6 @@ return {
       "query",
       "regex",
       "ruby",
-      "tsx",
-      "typescript",
       "vim",
       "vimdoc",
       "yaml",

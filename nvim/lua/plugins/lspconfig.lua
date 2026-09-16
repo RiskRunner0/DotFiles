@@ -25,6 +25,7 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
     local mason_tool_installer = require("mason-tool-installer")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local dd_gopls = vim.fn.exepath("dd-gopls")
 
     local default_capabilities = vim.lsp.protocol.make_client_capabilities()
     default_capabilities = vim.tbl_deep_extend(
@@ -50,39 +51,38 @@ return {
         },
       },
       pylsp = {},
-      ts_ls = {},
+      gopls = dd_gopls ~= "" and { cmd = { dd_gopls } } or {},
       rust_analyzer = {},
       sorbet = {},
     }
 
     mason.setup()
 
-    local mason_ensure_installed = vim.tbl_keys(server_configs or {})
-    vim.list_extend(
-      mason_ensure_installed,
-      {
-        -- place other packages you want to install but not configure with mason here
-        -- e.g. language servers not configured with nvim-lspconfig, linters, formatters, etc.
-        "stylua",
-      }
-    )
+    local mason_servers = vim.tbl_keys(server_configs)
+    if dd_gopls ~= "" then
+      mason_servers = vim.tbl_filter(function(server_name)
+        return server_name ~= "gopls"
+      end, mason_servers)
+    end
+    table.sort(mason_servers)
+
     mason_tool_installer.setup({
-      ensure_installed = mason_ensure_installed
+      ensure_installed = { "stylua" },
     })
 
+    for server_name, server_config in pairs(server_configs) do
+      server_config.capabilities = vim.tbl_deep_extend(
+        "force",
+        default_capabilities,
+        server_config.capabilities or {}
+      )
+      vim.lsp.config(server_name, server_config)
+      vim.lsp.enable(server_name)
+    end
+
     mason_lspconfig.setup({
-      handlers = {
-        function(server_name)
-          local server_config = server_configs[server_name] or {}
-          server_config.capabilities = vim.tbl_deep_extend(
-            "force",
-            default_capabilities,
-            server_config.capabilities or {}
-          )
-          vim.lsp.config(server_name, server_config)
-          vim.lsp.enable(server_name)
-        end,
-      },
+      ensure_installed = mason_servers,
+      automatic_enable = false,
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
