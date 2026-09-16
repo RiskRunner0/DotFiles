@@ -18,7 +18,6 @@ return {
     { "Bilal2453/luvit-meta", lazy = true },
     "hrsh7th/cmp-nvim-lsp",
     { 'j-hui/fidget.nvim',    opts = {} },
-    "oxalica/nil",
   },
 
   config = function()
@@ -52,15 +51,6 @@ return {
       },
       pylsp = {},
       ts_ls = {},
-      nil_ls = {
-        settings = {
-          ['nil'] = {
-            formatting = {
-              command = { "nixpkgs-fmt" },
-            },
-          },
-        },
-      },
       rust_analyzer = {},
       sorbet = {},
     }
