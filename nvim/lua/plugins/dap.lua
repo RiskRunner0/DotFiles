@@ -16,16 +16,6 @@ return {
       require("dapui").setup()
       require("dap-go").setup()
 
-      -- Handled by nvim-dap-go
-      dap.adapters.go = {
-        type = "server",
-        port = "${port}",
-        executable = {
-          command = "dlv",
-          args = { "dap", "-l", "127.0.0.1:${port}" },
-        },
-      }
-
       vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
       vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
 
