@@ -11,6 +11,10 @@
         set -gx PATH "$HOME/.local/bin" $PATH
       '';
 
+      interactiveShellInit = ''
+        fish_vi_key_bindings
+      '';
+
       shellAliases = {
         # Clipboard
         clip = "xclip -selection clipboard";

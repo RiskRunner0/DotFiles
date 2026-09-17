@@ -28,8 +28,14 @@ alias la='ls -A'
 alias l='ls -CF'
 
 if status is-interactive
+    fish_vi_key_bindings
+
     if type -q fzf
-        fzf --fish | source
+        if fzf --help | string match -q '*--fish*'
+            fzf --fish | source
+        else if type -q fzf_key_bindings
+            fzf_key_bindings
+        end
     end
 
     if type -q zoxide
